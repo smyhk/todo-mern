@@ -1,0 +1,23 @@
+{
+  "name": "server",
+  "version": "0.1.0",
+  "description": "Simple MERN todo app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "mern",
+    "react",
+    "javascript",
+    "mongodb",
+    "nodejs",
+    "todo",
+    "express"
+  ],
+  "author": "Steve K.",
+  "license": "MIT",
+  "dependencies": {
+    "graphql-yoga": "^1.14.10"
+  }
+}
