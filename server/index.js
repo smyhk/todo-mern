@@ -22,6 +22,8 @@ const typeDefs = `
   }
   type Mutation {
     createTodo(text: String!) : Todo
+    updateTodo(id: ID!, complete: Boolean!): Boolean
+    removeTodo(id: ID!): Boolean
   }
 `
 
@@ -35,11 +37,20 @@ const resolvers = {
       const todo = new Todo({ text, complete: false});
       await todo.save();
       return todo;
+    },
+    updateTodo: async (_, { id, complete }) => {
+      await Todo.findByIdAndUpdate(id, {complete});
+      return true;
+    },
+    removeTodo: async (_, { id }) => {
+      await Todo.findByIdAndRemove(id);
+      return true;
     }
   }
 };
 
+// create graphql server and connect to mongodb
 const server = new GraphQLServer({ typeDefs, resolvers });
 mongoose.connection.once("open", function() {
-  server.start(() => console.log('Server is running on localhost:4000'))
+  server.start(() => console.info('Server is running on localhost:4000'))
 });
